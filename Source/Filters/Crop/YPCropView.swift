@@ -13,7 +13,7 @@ class YPCropView: UIView {
 
     let imageView = UIImageView()
     let topCurtain = UIView()
-    let cropArea = UIView()
+    let cropArea = YPGridView()
     let bottomCurtain = UIView()
     let toolbar = UIToolbar()
 
