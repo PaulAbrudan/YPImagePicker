@@ -13,20 +13,20 @@ public enum YPCropType {
     case rectangle(ratio: Double)
 }
 
-class YPCropVC: UIViewController {
+public class YPCropVC: UIViewController {
     
     public var didFinishCropping: ((UIImage) -> Void)?
     
-    override var prefersStatusBarHidden: Bool { return YPConfig.hidesStatusBar }
+    override public var prefersStatusBarHidden: Bool { return YPConfig.hidesStatusBar }
     
     private let originalImage: UIImage
     private let pinchGR = UIPinchGestureRecognizer()
     private let panGR = UIPanGestureRecognizer()
     
     private let v: YPCropView
-    override func loadView() { view = v }
+    override public func loadView() { view = v }
     
-    required init(image: UIImage, ratio: Double) {
+    public required init(image: UIImage, ratio: Double) {
         v = YPCropView(image: image, ratio: ratio)
         originalImage = image
         super.init(nibName: nil, bundle: nil)
@@ -37,19 +37,19 @@ class YPCropVC: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func viewDidLoad() {
+    override public func viewDidLoad() {
         super.viewDidLoad()
         setupToolbar()
         setupGestureRecognizers()
     }
 
-    override func viewWillAppear(_ animated: Bool) {
+    override public func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
         self.navigationController?.setNavigationBarHidden(true, animated: false)
     }
 
-    override func viewWillDisappear(_ animated: Bool) {
+    override public func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
 
         self.navigationController?.setNavigationBarHidden(false, animated: true)
@@ -222,7 +222,7 @@ extension YPCropVC: UIGestureRecognizerDelegate {
     }
     
     /// Allow both Pinching and Panning at the same time.
-    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer,
+    public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer,
                            shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return true
     }
